@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm giá trị lớn nhất</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Nhập dãy số và tìm giá trị lớn nhất</h2>
+    <label for="daySo">Nhập các số cách nhau bằng dấu phẩy (,):</label>
+    <input type="text" id="daySo" placeholder="Ví dụ: 5, 8, 2, 9, 3">
+    <button onclick="timGiaTriLonNhat()">Tìm giá trị lớn nhất</button>
+    <div class="result" id="ketQua"></div>
+</div>
+
+<script>
+    function timGiaTriLonNhat() {
+        const input = document.getElementById("daySo").value;
+        if (!input.trim()) {
+            document.getElementById("ketQua").innerText = "Vui lòng nhập ít nhất một số.";
+            return;
+        }
+
+        try {
+            // Chuyển chuỗi thành mảng số nguyên
+            const mang = input.split(',').map(x => parseInt(x.trim()));
+
+            if (mang.some(isNaN)) {
+                document.getElementById("ketQua").innerText = "Dữ liệu không hợp lệ. Vui lòng nhập các số nguyên.";
+                return;
+            }
+
+            // Giống logic trong Python
+            let maxx = mang[0];
+            for (let i = 1; i < mang.length; i++) {
+                if (mang[i] > maxx) {
+                    maxx = mang[i];
+                }
+            }
+
+            document.getElementById("ketQua").innerText = "Giá trị lớn nhất là: " + maxx;
+        } catch (error) {
+            document.getElementById("ketQua").innerText = "Đã xảy ra lỗi. Vui lòng thử lại.";
+        }
+    }
+</script>
+
+</body>
+</html>

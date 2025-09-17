@@ -1,0 +1,4 @@
+tải thư viện về ở thanh terminal nhập
+pip install Flask
+lệnh chạy dự án
+python app.py
